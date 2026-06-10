@@ -167,3 +167,54 @@ Authorization: <JWT_TOKEN>
 ```
 
 ### POST `/api/issues`
+
+**Request:**
+
+```json
+{
+  "title": "Database connection timeout under load",
+  "description": "Pool exhausts after 50+ concurrent queries, causing 500 errors",
+  "type": "bug"
+}
+```
+
+**Response (201):**
+
+```json
+{
+  "success": true,
+  "message": "Issue created successfully",
+  "data": {
+    "id": 45,
+    "title": "Database connection timeout under load",
+    "description": "Pool exhausts after 50+ concurrent queries, causing 500 errors",
+    "type": "bug",
+    "status": "open",
+    "reporter_id": 1,
+    "created_at": "2026-01-20T10:30:00Z",
+    "updated_at": "2026-01-20T10:30:00Z"
+  }
+}
+```
+
+---
+
+## Project Structure
+
+```
+devpulse/
+├── src/
+│   ├── config/         # Database pool and environment config
+│   ├── middleware/     # Auth middleware, error handler
+│   ├── modules/
+│   │   ├── auth/       # Auth routes, controller, service
+│   │   └── issues/     # Issues routes, controller, service
+│   ├── utils/          # Response helpers, validators
+│   └── app.ts          # Express app setup
+├── schema.sql          # Database schema
+├── .env.example        # Environment variable template
+├── tsconfig.json
+└── package.json
+```
+
+---
