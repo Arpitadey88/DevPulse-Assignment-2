@@ -43,7 +43,7 @@
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/FahimFaysalNirjhar/DevPulse-Assignment-2
+git clone https://github.com/Arpitadey88/DevPulse-Assignment-2.git
 cd devpulse
 
 # 2. Install dependencies
@@ -69,3 +69,59 @@ JWT_SECRET=your_jwt_secret_here
 ```
 
 ---
+
+## Database Schema
+
+### `users`
+
+| Column       | Type                          | Description                                          |
+| ------------ | ----------------------------- | ---------------------------------------------------- |
+| `id`         | SERIAL PRIMARY KEY            | Auto-incrementing unique identifier                  |
+| `name`       | VARCHAR NOT NULL              | Full display name                                    |
+| `email`      | VARCHAR UNIQUE NOT NULL       | Login email address                                  |
+| `password`   | VARCHAR NOT NULL              | Bcrypt-hashed password (never returned in responses) |
+| `role`       | VARCHAR DEFAULT 'contributor' | Either `contributor` or `maintainer`                 |
+| `created_at` | TIMESTAMP                     | Auto-generated on insert                             |
+| `updated_at` | TIMESTAMP                     | Auto-refreshed on update                             |
+
+### `issues`
+
+| Column        | Type                   | Description                               |
+| ------------- | ---------------------- | ----------------------------------------- |
+| `id`          | SERIAL PRIMARY KEY     | Auto-incrementing unique identifier       |
+| `title`       | VARCHAR(150) NOT NULL  | Short descriptive headline                |
+| `description` | TEXT NOT NULL          | Detailed explanation (min 20 characters)  |
+| `type`        | VARCHAR NOT NULL       | Either `bug` or `feature_request`         |
+| `status`      | VARCHAR DEFAULT 'open' | One of: `open`, `in_progress`, `resolved` |
+| `reporter_id` | INTEGER NOT NULL       | References the submitting user's ID       |
+| `created_at`  | TIMESTAMP              | Auto-generated on insert                  |
+| `updated_at`  | TIMESTAMP              | Auto-refreshed on update                  |
+
+---
+
+## API Endpoints
+
+### Authentication
+
+| Method | Endpoint           | Access | Description                          |
+| ------ | ------------------ | ------ | ------------------------------------ |
+| POST   | `/api/auth/signup` | Public | Register a new user account          |
+| POST   | `/api/auth/login`  | Public | Authenticate and receive a JWT token |
+
+### Issues
+
+| Method | Endpoint          | Access          | Description                                   |
+| ------ | ----------------- | --------------- | --------------------------------------------- |
+| POST   | `/api/issues`     | Authenticated   | Create a new issue                            |
+| GET    | `/api/issues`     | Public          | Get all issues (supports filtering & sorting) |
+| GET    | `/api/issues/:id` | Public          | Get a single issue by ID                      |
+| PATCH  | `/api/issues/:id` | Authenticated   | Update an issue                               |
+| DELETE | `/api/issues/:id` | Maintainer only | Delete an issue                               |
+
+### Query Parameters for `GET /api/issues`
+
+| Param    | Values                            | Default              |
+| -------- | --------------------------------- | -------------------- |
+| `sort`   | `newest`, `oldest`                | `newest`             |
+| `type`   | `bug`, `feature_request`          | (none — returns all) |
+| `status` | `open`, `in_progress`, `resolved` | (none — returns all) |
