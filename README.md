@@ -1,7 +1,7 @@
 # DevPulse – Internal Tech Issue & Feature Tracker
 
 > A collaborative platform for software teams to report bugs, suggest features, and coordinate resolutions.
-**Live URL:** ``
+**Live URL:** `https://dev-pulse-assignment-2-liard.vercel.app/`
 **GitHub:** `https://github.com/Arpitadey88/DevPulse-Assignment-2`
 
 ---
