@@ -125,3 +125,45 @@ JWT_SECRET=your_jwt_secret_here
 | `sort`   | `newest`, `oldest`                | `newest`             |
 | `type`   | `bug`, `feature_request`          | (none — returns all) |
 | `status` | `open`, `in_progress`, `resolved` | (none — returns all) |
+
+### Authorization Header Format
+
+```
+Authorization: <JWT_TOKEN>
+```
+
+---
+
+## Request & Response Examples
+
+### POST `/api/auth/signup`
+
+**Request:**
+
+```json
+{
+  "name": "Fahim Faysal Nirjhar",
+  "email": "fahim@devpulse.com",
+  "password": "securePassword123",
+  "role": "contributor"
+}
+```
+
+**Response (201):**
+
+```json
+{
+  "success": true,
+  "message": "User registered successfully",
+  "data": {
+    "id": 1,
+    "name": "Fahim Faysal Nirjhar",
+    "email": "fahim@devpulse.com",
+    "role": "contributor",
+    "created_at": "2026-01-20T09:00:00Z",
+    "updated_at": "2026-01-20T09:00:00Z"
+  }
+}
+```
+
+### POST `/api/issues`
