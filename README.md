@@ -142,8 +142,8 @@ Authorization: <JWT_TOKEN>
 
 ```json
 {
-  "name": "Fahim Faysal Nirjhar",
-  "email": "fahim@devpulse.com",
+  "name": "Arpita",
+  "email": "arpita@devpulse.com",
   "password": "securePassword123",
   "role": "contributor"
 }
@@ -157,8 +157,8 @@ Authorization: <JWT_TOKEN>
   "message": "User registered successfully",
   "data": {
     "id": 1,
-    "name": "Fahim Faysal Nirjhar",
-    "email": "fahim@devpulse.com",
+    "name": "Arpita Banik",
+    "email": "arpita@devpulse.com",
     "role": "contributor",
     "created_at": "2026-01-20T09:00:00Z",
     "updated_at": "2026-01-20T09:00:00Z"
@@ -216,5 +216,30 @@ devpulse/
 ├── tsconfig.json
 └── package.json
 ```
+
+---
+
+---
+
+## Role & Permission Summary
+
+| Action                                 | Contributor | Maintainer |
+| -------------------------------------- | ----------- | ---------- |
+| Register / Login                       | ✅          | ✅         |
+| Create issue                           | ✅          | ✅         |
+| View all issues                        | ✅          | ✅         |
+| Update own issue (status: `open` only) | ✅          | ✅         |
+| Update any issue                       | ❌          | ✅         |
+| Delete any issue                       | ❌          | ✅         |
+| Change issue status independently      | ❌          | ✅         |
+
+---
+
+## Deployment
+
+- **Backend:** Deployed on [Vercel](https://vercel.com)
+- **Database:** Hosted on [NeonDB](https://neon.tech)
+- CORS is configured for cross-origin access
+- Environment variables are managed via the hosting platform's settings
 
 ---
